@@ -33,7 +33,7 @@ public class Application {
 
     private void initializePositiveClassifier() {
         try {
-            String seedFile = "C:\\TwitterDA\\seed.json";
+            String seedFile = "C:\\TwitterDA\\TwitterDataAnalytics\\owshappy.json";
             JsonStreamParser parser = new JsonStreamParser(new FileReader(seedFile));
                 JsonObject elem;
                 String text;
@@ -50,7 +50,7 @@ public class Application {
 
     private void initializeNegativeClassifier() {
         try {
-            String seedFile = "C:\\TwitterDA\\seed.json";
+            String seedFile = "C:\\TwitterDA\\TwitterDataAnalytics\\owssad.json";
             JsonStreamParser parser = new JsonStreamParser(new FileReader(seedFile));
                 JsonObject elem;
                 String text;
@@ -72,11 +72,13 @@ public class Application {
         return me;
     }
     
-    public NaiveBayesSentimentClassifier getPositiveClassifier() {
-        return positiveClassifier;
+    public static enum Classifiers { POSITIVE, NEGATIVE }
+    public NaiveBayesSentimentClassifier getClassifier(Classifiers c) {
+        if (c == Classifiers.POSITIVE)
+            return positiveClassifier;
+        else 
+            return negativeClassifier;
     }
     
-    public NaiveBayesSentimentClassifier getNegativeClassifier() {
-        return negativeClassifier;
-    }
+    
 }
