@@ -4,8 +4,10 @@
  */
 package techathon.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +30,9 @@ public class AnalytcisController {
     }
     
     @RequestMapping(value="/search", method= RequestMethod.POST)
-    public String search(@RequestParam String text) {
-        twitterService.search(text);
+    public String search(@RequestParam String text, Model model) {
+        List<String> tweets = twitterService.search(text);
+        model.addAttribute("tweets", tweets);
         return "analytics/search";
     }
     

@@ -31,16 +31,22 @@ public class TwitterServiceImpl extends AbstractTwitterService implements Twitte
         try {
             TwitterSession session = getAuthenticatedTwitterSession();
             QueryResult queryResult = session.getTwitterSession().search(query);
-            while (queryResult.hasNext()) {
+            if (queryResult.hasNext()) {
+                while (queryResult.hasNext()) {
+                    for (Status s : queryResult.getTweets()) {
+                        tweets.add(s.getText());
+                    }
+
+                    queryResult = session.getTwitterSession().search(queryResult.nextQuery());
+                }
+            } else {
                 for (Status s : queryResult.getTweets()) {
                     tweets.add(s.getText());
                 }
-                queryResult = session.getTwitterSession().search(queryResult.nextQuery());
             }
-        } catch (TwitterException ex) { 
+        } catch (TwitterException ex) {
             Logger.getLogger(TwitterServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tweets;
     }
-    
 }

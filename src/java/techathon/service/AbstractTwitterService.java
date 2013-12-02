@@ -21,9 +21,10 @@ public class AbstractTwitterService {
         AccessToken accessToken = new AccessToken("27447997-DI7nEr57tcfJ9lSjgfPssPdOcRZuo6K3bDkL08xNl",
                 "hUQsknqfweVQumiNwjj6ZsfiDZbD28q2973sWvJdvalug");
 
-        Twitter session = TwitterFactory.getSingleton();
-        session.setOAuthAccessToken(null);
+        Twitter session = new TwitterFactory().getInstance();
+        
         session.setOAuthConsumer("NOeCA0AeBPDMBrJxFj4BPQ", "AsltzXSiMi6GaEvMnMOe56bqrvMc09RVZrlQa5YG2jI");
+        session.setOAuthAccessToken(accessToken);
         User user = session.verifyCredentials();
         TwitterSession twitterSession = new TwitterSession();
         twitterSession.setAuthenticatedUser(user);
