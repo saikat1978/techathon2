@@ -7,6 +7,7 @@ package techathon.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import techathon.service.TwitterService;
 
@@ -26,10 +27,16 @@ public class AnalytcisController {
         return "index";
     }
     
-    @RequestMapping
+    @RequestMapping(value="/search", method= RequestMethod.POST)
     public String search(@RequestParam String text) {
         twitterService.search(text);
-        return "analytics/searchResult";
+        return "analytics/search";
+    }
+    
+    @RequestMapping(value="/search", method= RequestMethod.GET)
+    public String search() {
+        
+        return "analytics/search";
     }
     
 }
