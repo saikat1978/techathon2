@@ -5,6 +5,7 @@
 package techathon.service.impl;
 
 import Chapter4.classification.bayes.Classification;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,16 +21,21 @@ import techathon.service.SentimentAnalyzerService;
 public class SentimentAnalyzerServiceImpl implements SentimentAnalyzerService {
 
     public Classification classify(String text) {
-        Classification posC = Application.getInstance().getPositiveClassifier().classify(text);
-        Classification negC = Application.getInstance().getNegativeClassifier().classify(text);
+        Classification posC = Application.getInstance().getClassifier(Application.Classifiers.POSITIVE).classify(text);
+        Classification negC = Application.getInstance().getClassifier(Application.Classifiers.NEGATIVE).classify(text);
         System.out.println("pos " + posC);
         System.out.println("neg " + negC);
         //int compare = Double.compare(posC.getConfidence(), negC.getConfidence());
         double pConf = posC.getConfidence();
         double nConf = negC.getConfidence();
-        if (pConf > nConf) {
+        BigDecimal bdPosConf = BigDecimal.valueOf(pConf);
+        BigDecimal bdNegConf = BigDecimal.valueOf(nConf);
+        float flPosConf = Float.parseFloat(bdPosConf.toString().substring(0,4));
+        float flNegConf = Float.parseFloat(bdNegConf.toString().substring(0, 4));
+        
+        if (flPosConf > flNegConf) {
             return posC;
-        } else if (pConf < nConf) {
+        } else if (flPosConf < flNegConf) {
             return negC;
         } else {
             return new Classification("neutral", 0.0);
