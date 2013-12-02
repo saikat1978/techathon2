@@ -4,8 +4,11 @@
  */
 package techathon.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import techathon.service.TwitterService;
 
 /**
  *
@@ -15,9 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/analytics")
 public class AnalytcisController {
     
+    @Autowired
+    private TwitterService twitterService;
+    
     @RequestMapping
     public String index() {
         return "index";
+    }
+    
+    @RequestMapping
+    public String search(@RequestParam String text) {
+        twitterService.search(text);
+        return "analytics/searchResult";
     }
     
 }
