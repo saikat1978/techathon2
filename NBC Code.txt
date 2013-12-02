@@ -1,0 +1,113 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Chapter4.classification.bayes;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonStreamParser;
+import java.io.FileReader;
+import java.math.BigDecimal;
+
+/**
+ *
+ * @author ibm
+ */
+public class TestSeparateNBCs {
+    
+    public static void main(String[] args) {
+        String text = "@jhasanjay  I am still a fence-sitter. So please convince me on how does Rahul Gandhi qualify to be our next Prime Minister ?";
+        
+        Classification posC = Application.getInstance().getClassifier(Application.Classifier.POSITIVE).classify(text);
+        Classification negC = Application.getInstance().getClassifier(Application.Classifier.NEGATIVE).classify(text);
+        System.out.println("positive " + posC);
+        System.out.println("negative " + negC);
+        System.out.println("============================");
+        System.out.println("############################");
+        BigDecimal positiveConfidence = BigDecimal.valueOf(posC.getConfidence());
+        BigDecimal negativeConfidence = BigDecimal.valueOf(negC.getConfidence());
+        float posCFloat = Float.parseFloat(positiveConfidence.toString().substring(0, 4));
+        float negCFloat = Float.parseFloat(negativeConfidence.toString().substring(0, 4));
+        if (posCFloat > negCFloat) {
+            System.out.println("positive review");
+        } else if (posCFloat < negCFloat) {
+            System.out.println("negative review");
+        }
+    }
+}
+
+class Application {
+
+    private static NaiveBayesSentimentClassifier positiveClassifier;
+    private static NaiveBayesSentimentClassifier negativeClassifier;
+
+    private static Application me;
+    
+    static {
+        positiveClassifier = new NaiveBayesSentimentClassifier();
+        negativeClassifier = new NaiveBayesSentimentClassifier();
+    }
+
+    private Application() {
+        initPositiveClassifier();
+        initNegativeClassifier();
+    }
+
+    private void initPositiveClassifier() {
+        String filename = "C:\\Users\\IBM_ADMIN\\Desktop\\Twitter\\TwitterDataAnalytics\\TwitterDataAnalytics\\owshappy.json";
+
+
+        try {
+            //read the file, and train each document
+            JsonStreamParser parser = new JsonStreamParser(new FileReader(filename));
+            JsonObject elem;
+            String text;
+            while (parser.hasNext()) {
+                elem = parser.next().getAsJsonObject();
+                text = elem.get("text").getAsString();
+                positiveClassifier.trainInstance(text);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    
+
+    private void initNegativeClassifier() {
+        String filename = "C:\\Users\\IBM_ADMIN\\Desktop\\Twitter\\TwitterDataAnalytics\\TwitterDataAnalytics\\owssad.json";
+
+        try {
+            //read the file, and train each document
+            JsonStreamParser parser = new JsonStreamParser(new FileReader(filename));
+            JsonObject elem;
+            String text;
+            while (parser.hasNext()) {
+                elem = parser.next().getAsJsonObject();
+                text = elem.get("text").getAsString();
+                negativeClassifier.trainInstance(text);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public synchronized static Application getInstance() {
+        if (me == null) {
+            me = new Application();
+        }
+        return me;
+    }
+    
+    public static enum Classifier { POSITIVE, NEGATIVE }
+    
+    public NaiveBayesSentimentClassifier getClassifier(Classifier clEnum) {
+        if (clEnum == Classifier.POSITIVE) {
+            return positiveClassifier;
+        } else {
+            return negativeClassifier;
+        }
+    }
+}
