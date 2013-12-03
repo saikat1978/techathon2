@@ -20,6 +20,9 @@
                 <td><input type="submit" value="Search"></td>
             </tr> 
         </form>
+        <p>
+            <a href="/techathon/sentiment/analyze?q=${key}">Analyze sentiments</a>
+        </p>
         <c:forEach items="${tweets}" var="tweet">
             ${tweet}<br>
         </c:forEach>

@@ -5,12 +5,15 @@
 package techathon.controller;
 
 import java.util.List;
+import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import techathon.core.CacheManager;
 import techathon.service.TwitterService;
 
 /**
@@ -30,9 +33,12 @@ public class AnalytcisController {
     }
     
     @RequestMapping(value="/search", method= RequestMethod.POST)
-    public String search(@RequestParam String text, Model model) {
+    public String search(@RequestParam String text, Model model, HttpServletRequest request) {
         List<String> tweets = twitterService.search(text);
         model.addAttribute("tweets", tweets);
+        String cacheKey = UUID.randomUUID().toString();
+        model.addAttribute(CacheManager.KEY, cacheKey);
+        CacheManager.getManager().put(cacheKey, tweets);
         return "analytics/search";
     }
     

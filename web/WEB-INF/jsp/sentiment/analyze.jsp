@@ -27,5 +27,8 @@
            
         </table>
         </form>
+        <c:forEach items="${sentiments}" var="s">
+            ${s.key} - ${s.value}<br>
+        </c:forEach>
     </body>
 </html>

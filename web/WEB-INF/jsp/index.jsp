@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Twitter Data Analytics</h1>
-        <form>
+        <form action="/techathon/analytics/search" method="post">
             <tr>
-                <td><input type="text" name="q"></td>
+                <td><input type="text" name="text"></td>
                 <td><input type="submit" value="Search"></td>
             </tr> 
         </form>

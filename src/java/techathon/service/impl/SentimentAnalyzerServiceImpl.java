@@ -30,8 +30,8 @@ public class SentimentAnalyzerServiceImpl implements SentimentAnalyzerService {
         double nConf = negC.getConfidence();
         BigDecimal bdPosConf = BigDecimal.valueOf(pConf);
         BigDecimal bdNegConf = BigDecimal.valueOf(nConf);
-        float flPosConf = Float.parseFloat(bdPosConf.toString().substring(0,4));
-        float flNegConf = Float.parseFloat(bdNegConf.toString().substring(0, 4));
+        float flPosConf = Float.parseFloat(bdPosConf.toString().substring(0,3));
+        float flNegConf = Float.parseFloat(bdNegConf.toString().substring(0, 3));
         
         if (flPosConf > flNegConf) {
             return posC;
