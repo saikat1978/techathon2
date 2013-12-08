@@ -12,9 +12,12 @@ import org.springframework.stereotype.Service;
 import techathon.core.TwitterSession;
 import techathon.service.AbstractTwitterService;
 import techathon.service.TwitterService;
+import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
+import twitter4j.ResponseList;
 import twitter4j.Status;
+import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
 /**
@@ -48,5 +51,23 @@ public class TwitterServiceImpl extends AbstractTwitterService implements Twitte
             Logger.getLogger(TwitterServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tweets;
+    }
+
+    public List<String> getHomeTimeline() {
+        List<String> tweets = new LinkedList<String>();
+        try {
+            TwitterSession session = getAuthenticatedTwitterSession();
+            Twitter twitter = session.getTwitterSession();
+            Paging paging = new Paging(4, 100);
+            ResponseList<Status> statuses = twitter.getHomeTimeline(paging);
+            for (Status s : statuses) {
+                tweets.add(s.getText());
+            }
+        
+        } catch (TwitterException ex) {
+            Logger.getLogger(TwitterServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            return tweets;
+        }
     }
 }

@@ -13,5 +13,5 @@ import java.util.List;
 public interface TwitterService {
     
     public List<String> search(String text);
-    
+    public List<String> getHomeTimeline();
 }

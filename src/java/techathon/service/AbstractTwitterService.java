@@ -15,7 +15,7 @@ import twitter4j.auth.AccessToken;
  *
  * @author saikatsakura
  */
-public class AbstractTwitterService {
+public abstract class AbstractTwitterService {
     
     protected TwitterSession getAuthenticatedTwitterSession() throws TwitterException {
         AccessToken accessToken = new AccessToken("27447997-DI7nEr57tcfJ9lSjgfPssPdOcRZuo6K3bDkL08xNl",
