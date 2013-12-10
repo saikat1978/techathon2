@@ -5,18 +5,14 @@
 package techathon.scratchpad;
 
 
-import Chapter4.classification.bayes.Classification;
-import Chapter4.classification.bayes.NaiveBayesSentimentClassifier;
+
+import techathon.core.text.sentiment.NaiveBayesSentimentClassifier;
+import twitter4j.*;
+import twitter4j.Twitter;
+import twitter4j.auth.AccessToken;
+
 import java.util.LinkedList;
 import java.util.List;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.User;
-import twitter4j.auth.AccessToken;
 
 /**
  *

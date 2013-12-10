@@ -4,13 +4,14 @@
  */
 package techathon.service.impl;
 
-import Chapter4.classification.bayes.Classification;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 import techathon.core.Application;
+import techathon.core.text.sentiment.Classification;
 import techathon.service.SentimentAnalyzerService;
 
 /**

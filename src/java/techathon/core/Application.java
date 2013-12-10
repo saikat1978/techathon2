@@ -4,9 +4,11 @@
  */
 package techathon.core;
 
-import Chapter4.classification.bayes.NaiveBayesSentimentClassifier;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonStreamParser;
+import techathon.core.text.sentiment.NaiveBayesSentimentClassifier;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.logging.Level;
