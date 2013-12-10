@@ -4,7 +4,7 @@
  */
 package techathon.controller;
 
-import Chapter4.classification.bayes.Classification;
+
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import techathon.core.CacheManager;
+import techathon.core.text.sentiment.Classification;
 import techathon.service.SentimentAnalyzerService;
 
 /**

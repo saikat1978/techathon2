@@ -4,10 +4,12 @@
  */
 package techathon.service;
 
-import Chapter4.classification.bayes.Classification;
+
+
+import techathon.core.text.sentiment.Classification;
+
 import java.util.Collection;
 import java.util.Map;
-import org.springframework.stereotype.Service;
 
 /**
  *
