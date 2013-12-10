@@ -4,8 +4,7 @@
  */
 package techathon.scratchpad;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import techathon.core.utils.TextUtils;
 import techathon.service.TwitterService;
@@ -25,7 +24,7 @@ public class Twitter {
     
     public static void main(String[] args) throws TwitterException {
         service = new TwitterServiceImpl();
-        GeoLocation geo = new GeoLocation(22.566, 88.366);
+        /*GeoLocation geo = new GeoLocation(22.566, 88.366);
         Map<String, Trend[]> map = service.getLocalTrends(geo); 
         for (String place : map.keySet()) {
             System.out.println("place " + place);
@@ -34,6 +33,26 @@ public class Twitter {
                 System.out.println(t);
             }
             System.out.println("-------------------------------------------------------");
+        }*/
+        List<String> trendList = new LinkedList<String>();
+        Map<String, Integer> tokenMap = new HashMap<String, Integer>();
+        for (String s : service.getHomeTimeline()) {
+            final StringTokenizer tokenizer = new StringTokenizer(s);
+            while (tokenizer.hasMoreTokens()) {
+                final String token = tokenizer.nextToken();
+                if ((token.startsWith("#") || token.startsWith("@")) && token.length() > 1) {
+                    //trendList.add(token);
+                    if (tokenMap.containsKey(token)) {
+                        tokenMap.put(token, tokenMap.get(token) + 1);
+                    } else {
+                        tokenMap.put(token, 1);
+                    }
+                }
+            }
+        }
+
+        for (String s : tokenMap.keySet()) {
+            System.out.println(s + " > " + tokenMap.get(s));
         }
     }
     

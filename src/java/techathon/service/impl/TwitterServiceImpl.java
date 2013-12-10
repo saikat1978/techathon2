@@ -72,7 +72,7 @@ public class TwitterServiceImpl extends AbstractTwitterService implements Twitte
             TwitterSession session = getAuthenticatedTwitterSession();
             Twitter twitter = session.getTwitterSession();
             for (int i = 1; i <= 1; i++) {
-                final Paging paging = new Paging(i, 30);
+                final Paging paging = new Paging(i, 100);
                 ResponseList<Status> statuses = twitter.getHomeTimeline(paging);
                 for (Status s : statuses) {
                     tweets.add(s.getText());
