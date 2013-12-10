@@ -6,12 +6,14 @@ package techathon.scratchpad;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import techathon.core.utils.TextUtils;
 import techathon.service.TwitterService;
 import techathon.service.impl.TwitterServiceImpl;
 import twitter4j.GeoLocation;
 import twitter4j.Trend;
 import twitter4j.TwitterException;
-import utils.TextUtils;
+
 
 /**
  *
