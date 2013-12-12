@@ -20,10 +20,10 @@ public class BetweennessCentralityExample {
 			tweetFile = new File("synthetic_retweet_network.json");
 		}
 		
-		DirectedGraph<UserNode, RetweetEdge> retweetGraph = TweetFileToGraph.getRetweetNetwork(tweetFile);
+		DirectedGraph retweetGraph = TweetFileToGraph.getRetweetNetwork(tweetFile);
 		
 		//calculate the betweenness centrality
-		BetweennessCentrality<UserNode, RetweetEdge> betweenness = new BetweennessCentrality<UserNode, RetweetEdge>(retweetGraph);
+		BetweennessCentrality betweenness = new BetweennessCentrality(retweetGraph);
 		
 		betweenness.evaluate();
 		betweenness.printRankings(true, true);

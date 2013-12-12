@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 import techathon.core.TwitterSession;
+import techathon.core.text.trend.ControlChartExample;
 import techathon.service.AbstractTwitterService;
 import techathon.service.TwitterService;
 import twitter4j.GeoLocation;
@@ -100,5 +103,12 @@ public class TwitterServiceImpl extends AbstractTwitterService implements Twitte
             Logger.getLogger(TwitterServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return returnList;
+    }
+
+    @Override
+    public JSONArray getControlChartDataTrend(String twitterJsonDataFileLoc) {
+
+        ControlChartExample controlChartExample = new ControlChartExample();
+        return controlChartExample.GenerateDataTrend(twitterJsonDataFileLoc);  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

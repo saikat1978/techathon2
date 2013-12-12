@@ -4,9 +4,13 @@
  */
 package techathon.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,8 @@ import techathon.service.TwitterService;
 @Controller
 @RequestMapping(value="/analytics")
 public class AnalytcisController {
+
+    private static final String OWS_FILE = "ows.json";
     
     @Autowired
     private TwitterService twitterService;
@@ -46,6 +52,23 @@ public class AnalytcisController {
     public String search() {
         
         return "analytics/search";
+    }
+
+    @RequestMapping(value = "/controlChart", method = RequestMethod.GET)
+    public String controlChart() {
+        return "analytics/controlChart";
+    }
+
+    @RequestMapping(value = "/controlChartData", method = RequestMethod.GET)
+    public void controlChartData(HttpServletRequest request, HttpServletResponse response) {
+        String infilename = request.getSession().getServletContext().getRealPath("/")
+                + "/" + OWS_FILE;
+        JSONArray result = twitterService.getControlChartDataTrend(infilename);
+        try {
+            response.getWriter().write(result.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 }

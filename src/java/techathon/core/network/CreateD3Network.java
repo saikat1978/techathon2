@@ -23,12 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import techathon.core.utils.*;
-import utils.TextUtils;
 
-/**
- *
- * @author shamanth
- */
+
+
 public class CreateD3Network
 {
     static final String DEF_INFILENAME = "ows.json";

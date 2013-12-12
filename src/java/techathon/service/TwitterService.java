@@ -6,6 +6,8 @@ package techathon.service;
 
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONArray;
 import twitter4j.GeoLocation;
 import twitter4j.Trend;
 
@@ -18,4 +20,5 @@ public interface TwitterService {
     public List<String> search(String text);
     public List<String> getHomeTimeline();
     public Map<String, Trend[]> getLocalTrends(GeoLocation geo);
+    public JSONArray getControlChartDataTrend(String twitterJsonDataFileLoc);
 }

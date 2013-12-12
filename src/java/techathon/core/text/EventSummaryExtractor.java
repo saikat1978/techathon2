@@ -1,7 +1,7 @@
 
-package Chapter5.text;
+package techathon.core.text;
 
-import Chapter5.support.DateInfo;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import techathon.core.utils.DateInfo;
 
 public class EventSummaryExtractor
 {

@@ -1,5 +1,5 @@
 var trendcomp = {
-	script_location: 'jsp/ControlChart.jsp',
+	script_location: '/techathon/analytics/controlChartData',
 	margin: {top: 20, right: 80, bottom: 30, left: 50},
     width:null,
     height:null,
