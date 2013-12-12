@@ -1,6 +1,4 @@
-/* TweetTracker. Copyright (c) Arizona Board of Regents on behalf of Arizona State University
- * @author shamanth
- */
+
 package techathon.core.text.trend;
 
 import java.util.Date;

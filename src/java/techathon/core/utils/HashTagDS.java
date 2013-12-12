@@ -5,10 +5,7 @@
 
 package techathon.core.utils;
 
-/**
- *
- * @author shamanth
- */
+
 public class HashTagDS
 {
     public String groupname;
