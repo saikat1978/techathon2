@@ -7,8 +7,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.lang.NumberFormatException" %>
 <%@ page import="org.json.*" %>
-<%@ page import="Chapter5.network.*" %>
-<%@ page import="Chapter5.support.*" %>
+
 <%@ page import="utils.*" %>
 
 <%	

@@ -1,5 +1,5 @@
 <%@ page import="org.json.JSONArray" %>
-<%@ page import="Chapter5.trends.ExtractDatasetTrend"%>
+
 
 <%
 	String callbackName = request.getParameter("callback");

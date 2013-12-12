@@ -1,5 +1,5 @@
 <%@ page import="org.json.JSONObject" %>
-<%@ page import="Chapter5.text.EventSummaryExtractor" %>
+
 
 <%
 	String callbackName = request.getParameter("callback");

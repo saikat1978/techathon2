@@ -6,10 +6,7 @@
 package techathon.core.utils;
 import java.util.Comparator;
 
-/**
- *
- * @author shamanth
- */
+
 public class NodeSizeComparator implements Comparator
 {
     public int compare(Object o1, Object o2)

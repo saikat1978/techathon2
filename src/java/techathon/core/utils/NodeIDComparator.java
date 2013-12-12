@@ -7,10 +7,7 @@ package techathon.core.utils;
 
 import java.util.Comparator;
 
-/**
- *
- * @author shamanth
- */
+
 public class NodeIDComparator implements Comparator
 {
 

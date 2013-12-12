@@ -8,10 +8,7 @@ import java.util.ArrayList;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author shamanth
- */
+
 public class NetworkNode
 {
     public int id;

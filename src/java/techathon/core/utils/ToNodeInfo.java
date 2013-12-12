@@ -5,10 +5,6 @@
 
 package techathon.core.utils;
 
-/**
- *
- * @author shamanth
- */
 public class ToNodeInfo
 {
     public int tonodeid;
